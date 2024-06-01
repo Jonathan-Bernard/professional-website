@@ -1,95 +1,52 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./Home.module.css";
+import NavBar from "./components/navbar";
+import Footer from "./components/footer";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+    <>
+      <NavBar />
+      <div className={styles.container}>
+        <h1 className={styles.title}>
+          {" "}
+          Transformez vos idées en réalité numérique
+        </h1>
+        <div id="creation-site-web" className={styles.section}>
+          <h2 className={styles.subtitle}>Création de site web</h2>{" "}
+          <p className={styles.text}>
+            Profitez d&#39;un design web sur mesure qui capte l&#39;essence de
+            votre marque tout en offrant une expérience utilisateur
+            exceptionnelle. Nos sites sont conçus pour être esthétiquement
+            plaisants, fonctionnels, et optimisés pour tous les appareils et
+            plateformes.
           </p>
-        </a>
+        </div>
+        <h2 className={styles.subtitle}>Référencement, SEO</h2>{" "}
+        <p className={styles.text}>
+          Augmentez votre visibilité en ligne et attirez plus de visiteurs avec
+          nos stratégies SEO avancées. Nous optimisons votre site pour le
+          référencement afin de vous assurer une place en tête des résultats des
+          moteurs de recherche, ce qui augmente votre trafic et vos conversions.
+        </p>
+        <h2 className={styles.subtitle}>
+          CMS pour mise à jour sans compétence
+        </h2>{" "}
+        <p className={styles.text}>
+          Gardez le contrôle total sur le contenu de votre site avec notre
+          solution CMS facile à utiliser. Même sans compétences techniques, vous
+          pouvez facilement mettre à jour votre site, ajouter des articles de
+          blog, changer des photos, et plus encore, en toute autonomie.
+        </p>
+        <h2 className={styles.subtitle}>Technologies utilisées</h2>{" "}
+        <p className={styles.text}>
+          Nous utilisons les technologies web les plus avancées et les plus
+          adaptées pour construire votre site. De React et Next.js pour des
+          applications dynamiques et rapides à WordPress pour des solutions de
+          gestion de contenu faciles à gérer, nous choisissons les outils qui
+          correspondent le mieux à vos besoins spécifiques.
+        </p>
       </div>
-    </main>
+      <Footer />
+    </>
   );
 }
