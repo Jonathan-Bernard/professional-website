@@ -9,7 +9,7 @@ export default function Home() {
       <div className={styles.container}>
         <h1 className={styles.title}>
           {" "}
-          Transformez vos idées en réalité numérique
+          Transformez vos idées en réalité numérique !
         </h1>
         <div id="creation-site-web" className={styles.section}>
           <h2 className={styles.subtitle}>Création de site web</h2>{" "}
