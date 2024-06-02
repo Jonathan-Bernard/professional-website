@@ -44,26 +44,28 @@ export default function NavBar() {
       </Link>
       <div>
         <h1 className={styles.name}>John</h1>
-        <h2 className={styles.subtitle}>Développeur web et application</h2>
+        <h2 className={styles.subtitle}>
+          Développeur web et application, Lille (59)
+        </h2>
       </div>
       <div className={styles.burgerWrapper}>
         <Hamburger toggled={isOpen} toggle={toggleMenu} />
       </div>
       {isOpen && (
         <div className={styles.menu}>
-          <Link href="/" passHref onClick={closeMenu}>
+          <Link href="/" onClick={closeMenu}>
             Accueil
           </Link>
-          <Link href="/#creation-site-web" passHref onClick={closeMenu}>
+          <Link href="/#creation-site-web" onClick={closeMenu}>
             Services
           </Link>
-          <Link href="/creations" passHref onClick={closeMenu}>
+          <Link href="/creations" onClick={closeMenu}>
             Créations
           </Link>
-          <Link href="/about" passHref onClick={closeMenu}>
+          <Link href="/about" onClick={closeMenu}>
             À Propos
           </Link>
-          <Link href="/contact" passHref onClick={closeMenu}>
+          <Link href="/contact" onClick={closeMenu}>
             Contact
           </Link>
         </div>

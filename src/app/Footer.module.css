@@ -1,0 +1,45 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #5136b8;
+  color: #fff;
+}
+
+.footerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.copyRight {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.footerSection a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footerSection h2 {
+  margin-bottom: 10px;
+}
+
+.footerSection p,
+.footerSection a {
+  font-size: 14px;
+}
+
+.iconeReseauContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  position: relative;
+}
