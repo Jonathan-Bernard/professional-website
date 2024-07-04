@@ -104,6 +104,8 @@ export const getStaticProps: GetStaticProps = async () => {
       },
     }));
 
+    console.log("API response:", response.data);
+
     return {
       props: {
         creations,
