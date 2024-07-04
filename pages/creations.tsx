@@ -94,7 +94,6 @@ export const getStaticProps: GetStaticProps = async () => {
     const response = await axios.get(apiUrl);
     const data = response.data;
 
-    // Validation de la présence des données
     if (!data || !data.data) {
       console.error("Aucune donnée trouvée dans la réponse de l'API");
       return { props: { creations: [] } };
@@ -118,8 +117,11 @@ export const getStaticProps: GetStaticProps = async () => {
       },
       revalidate: 10,
     };
-  } catch (error) {
-    console.error("Failed to fetch creations:", error);
+  } catch (error: any) {
+    console.error("Failed to fetch creations:", error.message);
+    if (error.response) {
+      console.error("Error response data:", error.response.data);
+    }
     return {
       props: {
         creations: [],
