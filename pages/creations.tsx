@@ -35,6 +35,7 @@ interface CreationsProps {
 }
 
 const CreationPage: React.FC<CreationsProps> = ({ creations }) => {
+  console.log(creations);
   return (
     <>
       <Head>
@@ -89,12 +90,14 @@ export default CreationPage;
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const apiUrl = `${process.env.STRAPI_API_URL}/creations?populate=*`;
+    const apiUrl = `${process.env.STRAPI_API_URL}/api/creations?populate=*`;
     const { data } = await axios.get(apiUrl);
 
+    console.log(data);
+
     const creations = data.data.map((item: any) => {
-      const imageUrl = item.attributes.image?.data[0]?.attributes.url
-        ? `${process.env.STRAPI_BASE_URL}${item.attributes.image.data[0].attributes.url}`
+      const imageUrl = item.attributes.image?.data?.attributes.url
+        ? `${process.env.STRAPI_BASE_URL}${item.attributes.image.data.attributes.url}`
         : "/default-image.png";
 
       return {
@@ -112,8 +115,8 @@ export const getStaticProps: GetStaticProps = async () => {
       },
       revalidate: 10,
     };
-  } catch (error) {
-    console.error("Failed to fetch creations:", error);
+  } catch (error: any) {
+    console.error("Failed to fetch creations:", error.message);
     return {
       props: {
         creations: [],
