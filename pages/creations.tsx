@@ -92,7 +92,15 @@ export const getStaticProps: GetStaticProps = async () => {
   try {
     const apiUrl = `${process.env.STRAPI_API_URL}/api/creations?populate=*`;
     const response = await axios.get(apiUrl);
-    const creations = response.data.data.map((item: any) => ({
+    const data = response.data;
+
+    // Validation de la présence des données
+    if (!data || !data.data) {
+      console.error("Aucune donnée trouvée dans la réponse de l'API");
+      return { props: { creations: [] } };
+    }
+
+    const creations = data.data.map((item: any) => ({
       id: item.id,
       attributes: {
         ...item.attributes,
@@ -103,8 +111,6 @@ export const getStaticProps: GetStaticProps = async () => {
         },
       },
     }));
-
-    console.log("API response:", response.data);
 
     return {
       props: {
