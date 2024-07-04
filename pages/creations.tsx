@@ -91,23 +91,18 @@ export default CreationPage;
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const apiUrl = `${process.env.STRAPI_API_URL}/api/creations?populate=*`;
-    const { data } = await axios.get(apiUrl);
-
-    console.log(data);
-
-    const creations = data.data.map((item: any) => {
-      const imageUrl = item.attributes.image?.data?.attributes.url
-        ? `${process.env.STRAPI_BASE_URL}${item.attributes.image.data.attributes.url}`
-        : "/default-image.png";
-
-      return {
-        id: item.id,
-        attributes: {
-          ...item.attributes,
-          image: { url: imageUrl },
+    const response = await axios.get(apiUrl);
+    const creations = response.data.data.map((item: any) => ({
+      id: item.id,
+      attributes: {
+        ...item.attributes,
+        image: {
+          url: item.attributes.image
+            ? `${process.env.STRAPI_BASE_URL}${item.attributes.image.data.attributes.url}`
+            : "/default-image.png",
         },
-      };
-    });
+      },
+    }));
 
     return {
       props: {
@@ -115,8 +110,8 @@ export const getStaticProps: GetStaticProps = async () => {
       },
       revalidate: 10,
     };
-  } catch (error: any) {
-    console.error("Failed to fetch creations:", error.message);
+  } catch (error) {
+    console.error("Failed to fetch creations:", error);
     return {
       props: {
         creations: [],

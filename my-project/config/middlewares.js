@@ -5,7 +5,7 @@ module.exports = ({ env }) => [
     name: "strapi::cors",
     config: {
       enabled: true,
-      origin: ["https://john-dev.fr"],
+      origin: ["http://localhost:3000"],
     },
   },
   "strapi::poweredBy",

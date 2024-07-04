@@ -74,16 +74,6 @@ export default function NavBar() {
             </li>
             <li>
               <Link
-                href="/#creation-site-web"
-                passHref
-                onClick={closeMenu}
-                aria-label="Services"
-              >
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="/creations"
                 passHref
                 onClick={closeMenu}

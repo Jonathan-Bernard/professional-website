@@ -49,12 +49,12 @@ const Home: React.FC = () => {
               height={300}
             />
             <p className={styles.text}>
-              Découvrez mon expertise en création sur mesure de sites web et
-              d&apos;applications, conçus pour capturer l&apos;essence unique de
-              votre marque tout en offrant une expérience utilisateur
-              exceptionnelle. Les designs sont à la fois esthétiques et
-              fonctionnels, optimisés pour une compatibilité parfaite avec tous
-              les appareils et plateformes.
+              Découvrez mon expertise en{" "}
+              <b>création sur mesure de sites web et d&apos;applications</b>,
+              conçus pour capturer l&apos;essence unique de votre marque tout en
+              offrant une expérience utilisateur exceptionnelle. Les designs
+              sont à la fois <b>esthétiques et fonctionnels</b>, optimisés pour
+              une compatibilité parfaite avec tous les appareils et plateformes.
             </p>
           </article>
           <article className={styles.subcontainer}>
@@ -69,10 +69,10 @@ const Home: React.FC = () => {
             />
             <p className={styles.text}>
               Boostez votre présence en ligne et attirez davantage de visiteurs
-              grâce à une stratégie SEO avancée. J&apos;optimise votre site pour
-              le référencement naturel afin de garantir une visibilité optimale
-              dans les résultats de recherche, augmentant ainsi votre trafic
-              qualifié et vos conversions.
+              grâce à une stratégie <b>SEO</b> avancée. J&apos;optimise votre
+              site pour le <b>référencement</b> naturel afin de garantir une
+              visibilité optimale dans les résultats de recherche, augmentant
+              ainsi votre trafic qualifié et vos conversions.
             </p>
           </article>
           <article className={styles.subcontainer}>
@@ -89,9 +89,9 @@ const Home: React.FC = () => {
             />
             <p className={styles.text}>
               Gardez le contrôle total sur le contenu de votre site avec une
-              solution CMS (content management system) facile à utiliser. Même
-              sans compétences techniques, vous pouvez facilement mettre à jour
-              votre site, ajouter des articles de blog, changer des photos,
+              solution <b>CMS (content management system)</b> facile à utiliser.
+              Même sans compétences techniques, vous pouvez facilement mettre à
+              jour votre site, ajouter des articles de blog, changer des photos,
               modifier un menu et plus encore, en toute autonomie.
             </p>
           </article>
@@ -106,12 +106,12 @@ const Home: React.FC = () => {
               loading="lazy"
             />
             <p className={styles.text}>
-              J&apos;utilise les technologies web les plus avancées et les plus
-              adaptées pour construire votre site. Avec React et Next.js, je
-              crée des applications dynamiques et rapides qui offrent une
-              expérience web de haute qualité. Ces technologies sont utilisées
-              par des géants tels que Facebook, Instagram, Netflix, Airbnb, et
-              Uber.
+              J&apos;utilise les <b>technologies</b> web les plus avancées et
+              les plus adaptées pour construire votre site. Avec{" "}
+              <b>React et Next.js</b>, je crée des applications dynamiques et
+              rapides qui offrent une expérience web de haute qualité. Ces
+              technologies sont utilisées par des géants tels que Facebook,
+              Instagram, Netflix, Airbnb, et Uber.
             </p>
           </article>
         </section>
