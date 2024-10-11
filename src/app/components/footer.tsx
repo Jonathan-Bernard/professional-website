@@ -20,11 +20,12 @@ export default function Footer() {
             <p>
               <strong>Adresse:</strong>{" "}
               <a
-                href="https://www.google.com/maps/search/?api=1&query=59000+Lille+Métropole"
+                href="https://www.google.com/maps/place/John-dev/@50.6228479,3.0626101,17z/data=!3m1!4b1!4m6!3m5!1s0x47c2d59729de662f:0x50de1c885e3d4b22!8m2!3d50.6228479!4d3.0626101!16s%2Fg%2F11w1r8yxd7?entry=ttu
+"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Lille, Nord (59)
+                24 rue Geoffroy-Saint-Hilaire, 59000 Lille
               </a>
             </p>
             <p>
@@ -41,10 +42,10 @@ export default function Footer() {
           <div className={styles.navContainer}>
             <h2>Navigation</h2>
             <Link href="/">Accueil</Link>
-            <Link href="/#creation-site-web">Services</Link>
             <Link href="/creations">Créations</Link>
             <Link href="/about">À Propos</Link>
             <Link href="/contact">Contact</Link>
+            <Link href="/MentionsLegales">Mentions Légales</Link>
           </div>
         </div>
         <div className={styles.iconeReseauContainer}>
