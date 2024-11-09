@@ -92,6 +92,9 @@ export const getStaticProps: GetStaticProps = async () => {
   try {
     const apiUrl = `${process.env.STRAPI_API_URL}/api/creations?populate=*`;
     const response = await axios.get(apiUrl);
+
+    console.log("API Data:", response.data); // Debugging: Vérifie ce qui est renvoyé
+
     const creations = response.data.data.map((item: any) => {
       const imageUrl = item.attributes.image?.data?.attributes.url
         ? new URL(
@@ -109,13 +112,11 @@ export const getStaticProps: GetStaticProps = async () => {
       };
     });
 
-    console.log("API response:", response.data);
-
     return {
       props: {
         creations,
       },
-      revalidate: 10,
+      revalidate: 10, // Par défaut, tu peux mettre 10 ou 30 secondes pour les tests.
     };
   } catch (error) {
     console.error("Failed to fetch creations:", error);
