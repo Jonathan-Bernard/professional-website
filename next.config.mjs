@@ -3,7 +3,13 @@ const nextConfig = {
   poweredByHeader: false,
   swcMinify: true,
   images: {
-    domains: ["localhost"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "strapi-john-dev.onrender.com",
+        pathname: "/uploads/**",
+      },
+    ],
   },
 };
 

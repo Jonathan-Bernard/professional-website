@@ -7,6 +7,7 @@ import styles from "./Creations.module.css";
 import axios from "axios";
 import { GetStaticProps } from "next";
 
+// Définition des types pour mieux gérer la réponse de l'API
 interface TextChild {
   type: string;
   text: string;
@@ -15,6 +16,16 @@ interface TextChild {
 interface Paragraph {
   type: string;
   children: TextChild[];
+}
+
+interface ImageAttributes {
+  url: string;
+}
+
+interface ImageData {
+  data?: {
+    attributes: ImageAttributes;
+  };
 }
 
 interface Creation {
@@ -26,7 +37,7 @@ interface Creation {
     publishedAt: string;
     title: string;
     url: string;
-    image: { url: string } | null;
+    image: ImageData | null;
   };
 }
 
@@ -35,7 +46,6 @@ interface CreationsProps {
 }
 
 const CreationPage: React.FC<CreationsProps> = ({ creations }) => {
-  console.log(creations);
   return (
     <>
       <Head>
@@ -43,7 +53,7 @@ const CreationPage: React.FC<CreationsProps> = ({ creations }) => {
           Créations de site web, Référencement, CMS, Technologies avancées
         </title>
         <meta
-          name="Mes créations"
+          name="description"
           content="Explorez mes créations de sites web et applications pour particuliers et entreprises à Lille (59). Découvrez mes services de création de sites web, référencement, CMS et technologies avancées. Contactez-moi pour concrétiser vos projets numériques !"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -66,14 +76,15 @@ const CreationPage: React.FC<CreationsProps> = ({ creations }) => {
                 .map((p) => p.children.map((c) => c.text).join(""))
                 .join("")}
             </p>
-            {creation.attributes.image ? (
+            {creation.attributes.image?.data?.attributes?.url ? (
               <Image
                 className={styles.projectsimg}
-                src={creation.attributes.image.url}
+                src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${creation.attributes.image.data.attributes.url}`}
                 alt={`Image de ${creation.attributes.title}`}
                 width={500}
                 height={300}
                 quality={100}
+                priority
               />
             ) : (
               <div className={styles.noImage}>Pas d&apos;image disponible</div>
@@ -90,24 +101,24 @@ export default CreationPage;
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const apiUrl = `${process.env.STRAPI_API_URL}/api/creations?populate=*`;
+    const apiUrl = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/creations?populate=*`;
     const response = await axios.get(apiUrl);
 
-    console.log("API Data:", response.data); // Debugging: Vérifie ce qui est renvoyé
+    console.log("API Response:", JSON.stringify(response.data, null, 2));
 
     const creations = response.data.data.map((item: any) => {
-      const imageUrl = item.attributes.image?.data?.attributes.url
+      const imageUrl = item.attributes.image?.data?.attributes?.url
         ? new URL(
             item.attributes.image.data.attributes.url,
-            process.env.STRAPI_BASE_URL
+            process.env.NEXT_PUBLIC_STRAPI_BASE_URL // Assurez-vous que cette variable est bien définie
           ).toString()
-        : "/default-image.png";
+        : "/default-image.png"; // Valeur par défaut si pas d'image
 
       return {
         id: item.id,
         attributes: {
           ...item.attributes,
-          image: { url: imageUrl },
+          image: item.attributes.image ? { url: imageUrl } : null,
         },
       };
     });
@@ -116,7 +127,7 @@ export const getStaticProps: GetStaticProps = async () => {
       props: {
         creations,
       },
-      revalidate: 10, // Par défaut, tu peux mettre 10 ou 30 secondes pour les tests.
+      revalidate: 10, // Revalidation après 10 secondes
     };
   } catch (error) {
     console.error("Failed to fetch creations:", error);
