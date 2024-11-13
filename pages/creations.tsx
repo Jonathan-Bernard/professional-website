@@ -79,7 +79,7 @@ const CreationPage: React.FC<CreationsProps> = ({ creations }) => {
             {creation.attributes.image?.data?.attributes?.url ? (
               <Image
                 className={styles.projectsimg}
-                src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}${creation.attributes.image.data.attributes.url}`}
+                src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/uploads${creation.attributes.image.data.attributes.url}`}
                 alt={`Image de ${creation.attributes.title}`}
                 width={500}
                 height={300}
@@ -110,9 +110,11 @@ export const getStaticProps: GetStaticProps = async () => {
       const imageUrl = item.attributes.image?.data?.attributes?.url
         ? new URL(
             item.attributes.image.data.attributes.url,
-            `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`
+            `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload` // Cloudinary URL
           ).toString()
         : "/default-image.png"; // Valeur par défaut si pas d'image
+
+      console.log("Image URL:", imageUrl); // Vérification de l'URL
 
       return {
         id: item.id,
