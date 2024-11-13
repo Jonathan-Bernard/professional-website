@@ -108,11 +108,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
     const creations = response.data.data.map((item: any) => {
       const imageUrl = item.attributes.image?.data?.attributes?.url
-        ? new URL(
-            item.attributes.image.data.attributes.url,
-            `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload` // Cloudinary URL
-          ).toString()
-        : "/default-image.png"; // Valeur par défaut si pas d'image
+        ? item.attributes.image.data.attributes.url // L'URL doit déjà être correcte
+        : "/default-image.png";
 
       console.log("Image URL:", imageUrl); // Vérification de l'URL
 
