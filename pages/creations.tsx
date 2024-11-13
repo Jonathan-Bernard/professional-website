@@ -110,7 +110,7 @@ export const getStaticProps: GetStaticProps = async () => {
       const imageUrl = item.attributes.image?.data?.attributes?.url
         ? new URL(
             item.attributes.image.data.attributes.url,
-            process.env.NEXT_PUBLIC_STRAPI_BASE_URL // Assurez-vous que cette variable est bien définie
+            `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`
           ).toString()
         : "/default-image.png"; // Valeur par défaut si pas d'image
 
