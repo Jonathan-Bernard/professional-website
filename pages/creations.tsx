@@ -77,8 +77,9 @@ const CreationPage: React.FC<CreationsProps> = ({ creations }) => {
             creation.attributes.image?.url || "/default-image.png";
 
           // Affichage de l'URL de l'image pour le débogage
-          console.log("Processed Image URL:", imageUrl);
 
+          console.log("Processed Image URL:", imageUrl);
+          console.log("Processed Creation URL:", creation.attributes.url);
           return (
             <div key={creation.id} className={styles.creationcontainer}>
               <a
@@ -136,10 +137,16 @@ export const getStaticProps: GetStaticProps = async () => {
         item.attributes.image?.data?.attributes?.formats?.small?.url ||
         "/default-image.png"; // URL par défaut si aucune image n'est présente
 
-      // Utiliser directement l'URL de la création (sans préfixer)
-      const creationUrl = item.attributes.url || ""; // L'URL complète définie dans Strapi
+      // Vérifier et s'assurer que l'URL commence par "http://" ou "https://"
+      let creationUrl = item.attributes.url || ""; // L'URL complète définie dans Strapi
+
+      if (!/^https?:\/\//.test(creationUrl)) {
+        // Ajouter un protocole si l'URL ne commence pas par http:// ou https://
+        creationUrl = `https://${creationUrl}`;
+      }
 
       console.log("Processed Image URL:", imageUrl); // Log pour vérifier l'URL
+      console.log("Processed Creation URL:", creationUrl); // Log pour vérifier l'URL
 
       return {
         id: item.id,
