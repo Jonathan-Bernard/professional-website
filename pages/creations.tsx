@@ -1,13 +1,12 @@
 import "../src/app/globals.css";
-import Image from "next/image";
 import NavBar from "../src/app/components/navbar";
 import Footer from "../src/app/components/footer";
 import Head from "next/head";
 import styles from "./Creations.module.css";
 import axios from "axios";
 import { GetStaticProps } from "next";
+import Image from "next/image"; // Importation de la balise Image
 
-// Définition des types pour mieux gérer la réponse de l'API
 interface TextChild {
   type: string;
   text: string;
@@ -18,27 +17,37 @@ interface Paragraph {
   children: TextChild[];
 }
 
+interface ImageFormats {
+  large?: { url: string };
+  medium?: { url: string };
+  small?: { url: string };
+  thumbnail?: { url: string };
+}
+
 interface ImageAttributes {
-  url: string;
+  formats: ImageFormats;
 }
 
 interface ImageData {
   data?: {
     attributes: ImageAttributes;
   };
+  url?: string;
+}
+
+interface CreationAttributes {
+  description: Paragraph[];
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  title: string;
+  url: string;
+  image: ImageData | null;
 }
 
 interface Creation {
   id: number;
-  attributes: {
-    description: Paragraph[];
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    title: string;
-    url: string;
-    image: ImageData | null;
-  };
+  attributes: CreationAttributes;
 }
 
 interface CreationsProps {
@@ -61,37 +70,50 @@ const CreationPage: React.FC<CreationsProps> = ({ creations }) => {
       <NavBar />
       <div className={styles.horizontalbar}></div>
       <h1 className={styles.creationtitle}>Mes créations</h1>
-      <div className={styles.creationcontainer}>
-        {creations.map((creation) => (
-          <a
-            key={creation.id}
-            href={creation.attributes.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`En savoir plus sur ${creation.attributes.title}`}
-          >
-            <h2 className={styles.projects}>{creation.attributes.title}</h2>
-            <p>
-              {creation.attributes.description
-                .map((p) => p.children.map((c) => c.text).join(""))
-                .join("")}
-            </p>
-            {creation.attributes.image?.data?.attributes?.url ? (
-              <Image
-                className={styles.projectsimg}
-                src={creation.attributes.image.data.attributes.url}
-                alt={`Image de ${creation.attributes.title}`}
-                width={500}
-                height={300}
-                quality={100}
-                priority
-              />
-            ) : (
-              <div className={styles.noImage}>Pas d&apos;image disponible</div>
-            )}
-          </a>
-        ))}
+
+      <div className={styles.creationWrapper}>
+        {creations.map((creation) => {
+          const imageUrl =
+            creation.attributes.image?.url || "/default-image.png";
+
+          // Affichage de l'URL de l'image pour le débogage
+          console.log("Processed Image URL:", imageUrl);
+
+          return (
+            <div key={creation.id} className={styles.creationcontainer}>
+              <a
+                href={creation.attributes.url} // Utilisation directe de l'URL sans modification
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`En savoir plus sur ${creation.attributes.title}`}
+              >
+                <h2 className={styles.projects}>{creation.attributes.title}</h2>
+                <p>
+                  {creation.attributes.description
+                    .map((p) => p.children.map((c) => c.text).join(" "))
+                    .join(" ")}
+                </p>
+                <div className={styles.imageWrapper}>
+                  <Image
+                    src={imageUrl}
+                    alt={creation.attributes.title}
+                    width={500}
+                    height={300}
+                    onError={(e) => {
+                      e.currentTarget.src = "/default-image.png";
+                      console.log("Erreur lors du chargement de l'image");
+                    }}
+                    priority
+                    sizes="(max-width: 768px) 100vw, 500px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              </a>
+            </div>
+          );
+        })}
       </div>
+
       <Footer />
     </>
   );
@@ -107,22 +129,26 @@ export const getStaticProps: GetStaticProps = async () => {
     console.log("API Response:", JSON.stringify(response.data, null, 2));
 
     const creations = response.data.data.map((item: any) => {
-      // Récupérer l'URL de l'image
-      const imageUrl = item.attributes.image?.data?.attributes?.url
-        ? item.attributes.image.data.attributes.url.startsWith(
-            "https://res.cloudinary.com/dvjzh5dto/image/upload"
-          )
-          ? item.attributes.image.data.attributes.url // Si l'URL commence déjà par le préfixe, ne rien ajouter
-          : `https://res.cloudinary.com/dvjzh5dto/image/upload${item.attributes.image.data.attributes.url}` // Si l'URL est relative, ajoute le préfixe
-        : "/default-image.png"; // Si aucune image, affiche une image par défaut
+      // Définir l'URL de l'image depuis la réponse de l'API
+      const imageUrl =
+        item.attributes.image?.data?.attributes?.formats?.medium?.url ||
+        item.attributes.image?.data?.attributes?.formats?.large?.url ||
+        item.attributes.image?.data?.attributes?.formats?.small?.url ||
+        "/default-image.png"; // URL par défaut si aucune image n'est présente
 
-      console.log("Image URL:", imageUrl); // Vérification de l'URL de l'image
+      // Utiliser directement l'URL de la création (sans préfixer)
+      const creationUrl = item.attributes.url || ""; // L'URL complète définie dans Strapi
+
+      console.log("Processed Image URL:", imageUrl); // Log pour vérifier l'URL
 
       return {
         id: item.id,
         attributes: {
           ...item.attributes,
-          image: item.attributes.image ? { url: imageUrl } : null,
+          image: {
+            url: imageUrl, // Ajouter l'URL de l'image ici
+          },
+          url: creationUrl, // Utiliser directement l'URL sans modification
         },
       };
     });
@@ -137,7 +163,7 @@ export const getStaticProps: GetStaticProps = async () => {
     console.error("Failed to fetch creations:", error);
     return {
       props: {
-        creations: [],
+        creations: [], // Retourner une liste vide en cas d'erreur
       },
     };
   }
