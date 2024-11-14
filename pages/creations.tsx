@@ -79,7 +79,7 @@ const CreationPage: React.FC<CreationsProps> = ({ creations }) => {
             {creation.attributes.image?.data?.attributes?.url ? (
               <Image
                 className={styles.projectsimg}
-                src={`${process.env.NEXT_PUBLIC_STRAPI_BASE_URL}/uploads${creation.attributes.image.data.attributes.url}`}
+                src={creation.attributes.image.data.attributes.url}
                 alt={`Image de ${creation.attributes.title}`}
                 width={500}
                 height={300}
