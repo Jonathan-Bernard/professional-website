@@ -107,11 +107,16 @@ export const getStaticProps: GetStaticProps = async () => {
     console.log("API Response:", JSON.stringify(response.data, null, 2));
 
     const creations = response.data.data.map((item: any) => {
+      // Récupérer l'URL de l'image
       const imageUrl = item.attributes.image?.data?.attributes?.url
-        ? item.attributes.image.data.attributes.url // L'URL doit déjà être correcte
-        : "/default-image.png";
+        ? item.attributes.image.data.attributes.url.startsWith(
+            "https://res.cloudinary.com/dvjzh5dto/image/upload"
+          )
+          ? item.attributes.image.data.attributes.url // Si l'URL commence déjà par le préfixe, ne rien ajouter
+          : `https://res.cloudinary.com/dvjzh5dto/image/upload${item.attributes.image.data.attributes.url}` // Si l'URL est relative, ajoute le préfixe
+        : "/default-image.png"; // Si aucune image, affiche une image par défaut
 
-      console.log("Image URL:", imageUrl); // Vérification de l'URL
+      console.log("Image URL:", imageUrl); // Vérification de l'URL de l'image
 
       return {
         id: item.id,

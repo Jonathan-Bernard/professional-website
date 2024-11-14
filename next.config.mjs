@@ -6,6 +6,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/dvjzh5dto/image/upload/*", // Ajusté pour plus de flexibilité
+      },
+      {
+        protocol: "https",
         hostname: "strapi-john-dev.onrender.com",
         pathname: "/uploads/**",
       },
