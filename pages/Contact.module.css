@@ -20,6 +20,12 @@
   font-size: 18px;
 }
 
+.label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
 .formContainer {
   max-width: 600px;
   padding: 10%;
@@ -116,7 +122,9 @@
 
   .formGroup {
     display: flex;
-    gap: 20px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
   }
 
   .textarea {

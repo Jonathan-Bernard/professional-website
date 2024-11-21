@@ -8,80 +8,124 @@ export default function MentionsLegales() {
   return (
     <>
       <Head>
-        <title>
-          Mentions Légales - Développeur Web Freelance - Jonathan Bernard
-        </title>
+        <title>Mentions Légales - Développeur Web Freelance - John Dev</title>
         <meta
-          name="Mentions Légales"
-          content="Mentions Légales - Développeur Web Freelance - Jonathan Bernard"
+          name="description"
+          content="Mentions légales de John Dev, développeur web freelance à Lille. Informations sur l'éditeur, l'hébergeur et les conditions d'utilisation du site."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <NavBar />
       <div className={styles.horizontalbar}></div>
-      <div className={styles.mentionsContainer}>
+      <main className={styles.mentionsContainer}>
         <h1 className={styles.mentionsTitle}>Mentions Légales</h1>
-        <br />
-        <p className={styles.mentionsText}>En vigueur au 11/10/2024</p>
-        <p className={styles.mentionsText}>
-          Conformément aux dispositions de la loi n°2004-575 du 21 juin 2004
-          pour la Confiance en l’économie numérique, il est porté à la
-          connaissance des utilisateurs et visiteurs, ci-après l&apos;
-          &quot;Utilisateur&quot;, du site john-dev.fr , ci-après le
-          &quot;Site&quot;, les présentes mentions légales. La connexion et la
-          navigation sur le Site par l’Utilisateur implique acceptation
-          intégrale et sans réserve des présentes mentions légales. Ces
-          dernières sont accessibles sur le Site à la rubrique &quot;Mentions
-          légales&quot;.
-        </p>
-        <br />
-        <h2 className={styles.mentionsSubtitle}>EDITION DU SITE</h2>
-        <p className={styles.mentionsText}>
-          L’édition et la direction de la publication du Site est assurée par
-          Monsieur Jonathan Bernard, domicilié 24 rue Geoffroy-Saint-Hilaire,
-          59000 Lille, dont le numéro de téléphone est 06.34.38.75.25, et
-          l&apos;adresse e-mail john.developpeur.web@gmail.com. ci-après
-          l&apos;&quot;Editeur&quot;
-        </p>
-        <br />
-        <h2 className={styles.mentionsSubtitle}>HEBERGEUR</h2>
-        <p className={styles.mentionsText}>
-          L&apos;hébergeur du Site est la société OVHcloud, dont le siège social
-          est situé au 2 Rue Kellermann, 59100 Roubaix.
-        </p>
-        <br />
-        <h2 className={styles.mentionsSubtitle}>ACCES AU SITE</h2>
-        <p className={styles.mentionsText}>
-          Le Site est normalement accessible, à tout moment, à
-          l&apos;Utilisateur. Toutefois, l&apos;Editeur pourra, à tout moment,
-          suspendre, limiter ou interrompre le Site afin de procéder, notamment,
-          à des mises à jour ou des modifications de son contenu. L&apos;Editeur
-          ne pourra en aucun cas être tenu responsable des conséquences
-          éventuelles de cette indisponibilité sur les activités de
-          l&apos;Utilisateur. ci-après l&apos;&quot;Editeur&quot;.
-        </p>
-        <br />
-        <h2 className={styles.mentionsSubtitle}>COLLECTE DES DONNEES</h2>
-        <p className={styles.mentionsText}>
-          Le Site assure à l&apos;Utilisateur une collecte et un traitement des
-          données personnelles dans le respect de la vie privée conformément à
-          la loi n°78-17 du 6 janvier 1978 relative à l&apos;informatique, aux
-          fichiers aux libertés et dans le respect de la règlementation
-          applicable en matière de traitement des données à caractère personnel
-          conformément au règlement (UE) 2016/679 du Parlement européen et du
-          Conseil du 27 avril 2016 (ci-après, ensemble, la &quot;Règlementation
-          applicable en matière de protection des Données à caractère
-          personnel&quot;). En vertu de la Règlementation applicable en matière
-          de protection des Données à caractère personnel, l&apos;Utilisateur
-          dispose d&apos;un droit d&apos;accès, de rectification, de suppression
-          et d&apos;opposition de ses données personnelles. L&apos;Utilisateur
-          peut exercer ce droit : Toute utilisation, reproduction, diffusion,
-          commercialisation, modification de toute ou partie du Site, sans
-          autorisation expresse de l’Editeur est prohibée et pourra entraîner
-          des actions et poursuites judiciaires telles que prévues par la
-          règlementation en vigueur.
-        </p>
-      </div>
+        <p className={styles.mentionsDate}>En vigueur au 11/10/2024</p>
+
+        <section aria-labelledby="section-edition" className={styles.section}>
+          <h2 id="section-edition" className={styles.mentionsSubtitle}>
+            Édition du site
+          </h2>
+          <p>
+            Le site <strong>john-dev.fr</strong> est édité par :
+          </p>
+          <ul>
+            <li>
+              <strong>Nom :</strong> Jonathan Bernard
+            </li>
+            <li>
+              <strong>Adresse :</strong> 24 rue Geoffroy-Saint-Hilaire, 59000
+              Lille
+            </li>
+            <li>
+              <strong>Téléphone :</strong>{" "}
+              <a href="tel:0634387525">06.34.38.75.25</a>
+            </li>
+            <li>
+              <strong>Email :</strong>{" "}
+              <a href="mailto:john.developpeur.web@gmail.com">
+                john.developpeur.web@gmail.com
+              </a>
+            </li>
+            <li>
+              <strong>Statut :</strong> Auto-entrepreneur, immatriculé au RCS de
+              Lille sous le numéro SIRET 849559091400032
+            </li>
+          </ul>
+        </section>
+
+        <section
+          aria-labelledby="section-hebergement"
+          className={styles.section}
+        >
+          <h2 id="section-hebergement" className={styles.mentionsSubtitle}>
+            Hébergement
+          </h2>
+          <p>Le site est hébergé par :</p>
+          <ul>
+            <li>
+              <strong>Nom :</strong> Vercel Inc
+            </li>
+            <li>
+              <strong>Adresse :</strong>650 California St, San Francisco, CA
+              94108, US
+            </li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="section-donnees" className={styles.section}>
+          <h2 id="section-donnees" className={styles.mentionsSubtitle}>
+            Collecte de données personnelles
+          </h2>
+          <p>
+            Ce site vitrine ne collecte aucune donnée personnelle. Aucun cookie
+            tiers ni outil de suivi (comme Google Analytics) n&apos;est utilisé.
+          </p>
+          <p>
+            Pour toute question relative à la vie privée ou aux mentions
+            légales, vous pouvez contacter l&apos;éditeur par email à
+            john.developpeur.web@gmail.com
+            <a
+              href="mailto:john.developpeur.web@gmail.com"
+              aria-label="Envoyer un email à john.developpeur.web@gmail.com"
+            >
+              john.developpeur.web@gmail.com
+            </a>
+            .
+          </p>
+        </section>
+
+        <section aria-labelledby="section-propriete" className={styles.section}>
+          <h2 id="section-propriete" className={styles.mentionsSubtitle}>
+            Propriété intellectuelle
+          </h2>
+          <p>
+            Tous les contenus présents sur ce site (textes, images, graphismes,
+            logos, icônes) sont la propriété exclusive de Jonathan Bernard, sauf
+            mention contraire. Toute reproduction, représentation, modification,
+            publication, adaptation de tout ou partie des éléments du site est
+            interdite, sauf autorisation écrite préalable.
+          </p>
+        </section>
+
+        <section
+          aria-labelledby="section-responsabilite"
+          className={styles.section}
+        >
+          <h2 id="section-responsabilite" className={styles.mentionsSubtitle}>
+            Responsabilité
+          </h2>
+          <p>
+            L’éditeur ne pourra être tenu responsable des dommages directs ou
+            indirects causés au matériel de l’utilisateur lors de l’accès au
+            site, ni des interruptions ou dysfonctionnements.
+          </p>
+          <p>
+            L’utilisateur du site s’engage à accéder au site en utilisant un
+            matériel récent, ne contenant pas de virus, et avec un navigateur de
+            dernière génération mis à jour.
+          </p>
+        </section>
+      </main>
       <Footer />
     </>
   );

@@ -17,6 +17,7 @@
   padding-bottom: 5%;
   padding-left: 5%;
   box-sizing: content-box;
+  font-style: normal;
 }
 
 .contactContainer h2 {
@@ -55,6 +56,11 @@
   width: 100%;
   height: auto;
   margin: 0;
+}
+
+.navList {
+  list-style-type: none;
+  padding: 0;
 }
 
 @media (min-width: 768px) {

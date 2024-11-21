@@ -30,24 +30,53 @@ export default function NavBar() {
   return (
     <>
       <Head>
-        <link rel="preload" href="/fusée.svg" as="image" />
+        <title>Développeur Web Lille | Création Sites & Applications</title>
+        <meta
+          name="description"
+          content="Développeur web à Lille (59). Création de sites sur mesure, SEO, CMS et applications modernes. Contactez-moi pour donner vie à vos projets numériques !"
+        />
+        <meta
+          name="keywords"
+          content="développeur web Lille, création sites web, SEO, CMS, freelance développeur"
+        />
+        <meta property="og:title" content="Développeur Web Lille - John Dev" />
+        <meta
+          property="og:description"
+          content="Création de sites web et applications sur mesure à Lille. Boostez votre présence en ligne grâce à mes services SEO, CMS et technologies modernes."
+        />
+        <meta property="og:image" content="https://john-dev.fr/fusee.svg" />
+        <meta property="og:url" content="https://john-dev.fr" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://john-dev.fr/fusee.svg" />
+        <link rel="canonical" href="https://john-dev.fr" />
+        <link rel="preload" href="/fusee.svg" as="image" />
       </Head>
       <header className={styles.navBarContainer}>
         <Link href="/" passHref aria-label="Accueil">
           <Image
             className={styles.logo}
-            src="/fusée.svg"
-            alt="logo"
-            width={100}
-            height={100}
+            src="/fusee.svg"
+            alt="Logo John Dev"
+            width={80}
+            height={80}
             loading="eager"
           />
         </Link>
         <div className={styles.titleContainer}>
-          <div className={styles.title}>JOHN</div>
-          <div className={styles.subtitle}>
-            Développeur web et application, Lille (59)
+          <div className={styles.title} aria-label="Nom du site">
+            JOHN
           </div>
+          <span
+            className={styles.subtitle}
+            aria-label="Développeur web Lille"
+            style={{
+              fontSize: "3rem",
+              fontWeight: "400",
+            }}
+          >
+            Développeur Web & Applications - Lille (59)
+          </span>
         </div>
         <button
           className={styles.burgerWrapper}
